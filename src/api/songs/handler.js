@@ -1,6 +1,6 @@
-const errorClient = require('../../errors/errorClient');
+const ErrorClient = require('../../errors/ErrorClient');
 
-class songsHandler {
+class SongsHandler {
   constructor(service, validator) {
     this._service = service;
     this._validator = validator;
@@ -43,7 +43,7 @@ class songsHandler {
       response.code(201);
       return response;
     } catch (error) {
-      if (error instanceof errorClient) {
+      if (error instanceof ErrorClient) {
         const response = h.response({
           status: 'fail',
           message: error.message,
@@ -74,7 +74,7 @@ class songsHandler {
         },
       };
     } catch (error) {
-      if (error instanceof errorClient) {
+      if (error instanceof ErrorClient) {
         const response = h.response({
           status: 'fail',
           message: error.message,
@@ -104,7 +104,7 @@ class songsHandler {
         },
       };
     } catch (error) {
-      if (error instanceof errorClient) {
+      if (error instanceof ErrorClient) {
         const response = h.response({
           status: 'fail',
           message: error.message,
@@ -135,7 +135,7 @@ class songsHandler {
         message: 'Data lagu berhasil diperbarui.',
       };
     } catch (error) {
-      if (error instanceof errorClient) {
+      if (error instanceof ErrorClient) {
         const response = h.response({
           status: 'fail',
           message: error.message,
@@ -163,7 +163,7 @@ class songsHandler {
         message: 'Data lagu berhasil dihapus.',
       };
     } catch (error) {
-      if (error instanceof errorClient) {
+      if (error instanceof ErrorClient) {
         const response = h.response({
           status: 'fail',
           message: error.message,
@@ -183,4 +183,4 @@ class songsHandler {
   }
 }
 
-module.exports = songsHandler;
+module.exports = SongsHandler;

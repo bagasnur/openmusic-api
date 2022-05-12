@@ -1,6 +1,6 @@
-const errorClient = require('../../errors/errorClient');
+const ErrorClient = require('../../errors/ErrorClient');
 
-class albumsHandler {
+class AlbumsHandler {
   constructor(service, validator) {
     this._service = service;
     this._validator = validator;
@@ -28,7 +28,7 @@ class albumsHandler {
       response.code(201);
       return response;
     } catch (error) {
-      if (error instanceof errorClient) {
+      if (error instanceof ErrorClient) {
         const response = h.response({
           status: 'fail',
           message: error.message,
@@ -58,7 +58,7 @@ class albumsHandler {
         },
       };
     } catch (error) {
-      if (error instanceof errorClient) {
+      if (error instanceof ErrorClient) {
         const response = h.response({
           status: 'fail',
           message: error.message,
@@ -89,7 +89,7 @@ class albumsHandler {
         message: 'Data album berhasil diperbarui.',
       };
     } catch (error) {
-      if (error instanceof errorClient) {
+      if (error instanceof ErrorClient) {
         const response = h.response({
           status: 'fail',
           message: error.message,
@@ -117,7 +117,7 @@ class albumsHandler {
         message: 'Album berhasil dihapus.',
       };
     } catch (error) {
-      if (error instanceof errorClient) {
+      if (error instanceof ErrorClient) {
         const response = h.response({
           status: 'fail',
           message: error.message,
@@ -137,4 +137,4 @@ class albumsHandler {
   }
 }
 
-module.exports = albumsHandler;
+module.exports = AlbumsHandler;

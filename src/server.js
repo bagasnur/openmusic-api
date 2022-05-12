@@ -2,10 +2,10 @@ require('dotenv').config();
 
 const hapi = require('@hapi/hapi');
 const songs = require('./api/songs');
-const SongsService = require('./services/songsService');
+const SongsService = require('./services/SongsService');
 const SongsValidator = require('./validator/songs');
 const albums = require('./api/albums');
-const AlbumsService = require('./services/albumsService');
+const AlbumsService = require('./services/AlbumsService');
 const AlbumsValidator = require('./validator/albums');
 
 const startServer = async () => {

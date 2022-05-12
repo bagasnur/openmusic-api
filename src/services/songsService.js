@@ -1,10 +1,10 @@
 const { Pool } = require('pg');
 const { nanoid } = require('nanoid');
-const InvariantError = require('../errors/invariantError');
-const NotFoundError = require('../errors/notFoundError');
+const InvariantError = require('../errors/InvariantError');
+const NotFoundError = require('../errors/NotFoundError');
 const { mapSong, mapSongDetail } = require('../utilities/mapSongDB');
 
-class songsService {
+class SongsService {
   constructor() {
     this._pool = new Pool();
   }
@@ -126,4 +126,4 @@ class songsService {
   }
 }
 
-module.exports = songsService;
+module.exports = SongsService;
