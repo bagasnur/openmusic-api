@@ -3,6 +3,7 @@ const { nanoid } = require('nanoid');
 const InvariantError = require('../errors/InvariantError');
 const NotFoundError = require('../errors/NotFoundError');
 const { mapAlbum } = require('../utilities/mapAlbumDB');
+const { mapSong } = require('../utilities/mapSongDB');
 
 class AlbumsService {
   constructor() {
@@ -40,6 +41,20 @@ class AlbumsService {
     }
 
     return result.rows.map(mapAlbum)[0];
+  }
+
+  async getSongsByAlbumId(id) {
+    const query = {
+      text: 'SELECT * FROM songs WHERE "albumId" = $1',
+      values: [id],
+    };
+    const result = await this._pool.query(query);
+
+    if (!result.rows.length) {
+      return [];
+    }
+
+    return result.rows.map(mapSong);
   }
 
   async editAlbumById(id, { name, year }) {
