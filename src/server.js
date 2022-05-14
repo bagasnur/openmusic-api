@@ -11,6 +11,7 @@ const AlbumsValidator = require('./validator/albums');
 const startServer = async () => {
   const songsService = new SongsService();
   const albumService = new AlbumsService();
+
   const server = hapi.server({
     port: process.env.PORT,
     host: process.env.HOST,

@@ -30,7 +30,6 @@ class SongsService {
         updatedAt,
       ],
     };
-
     const result = await this._pool.query(query);
 
     if (!result.rows[0].id) {
@@ -70,6 +69,7 @@ class SongsService {
     }
 
     const result = await this._pool.query('SELECT * FROM songs');
+
     return result.rows.map(mapSong);
   }
 
@@ -91,6 +91,7 @@ class SongsService {
     title, year, genre, performer, duration, albumId,
   }) {
     const updatedAt = new Date().toISOString();
+
     const query = {
       text: 'UPDATE songs SET title = $1, year = $2, genre = $3, performer = $4, duration = $5, "albumId" = $6, updated_at = $7 WHERE id = $8 RETURNING id',
       values: [
@@ -104,9 +105,8 @@ class SongsService {
         id,
       ],
     };
-
     const result = await this._pool.query(query);
-    console.log(result);
+
     if (!result.rows.length) {
       throw new NotFoundError('Lagu gagal diperbarui. Id tidak ditemukan');
     }
@@ -117,7 +117,6 @@ class SongsService {
       text: 'DELETE FROM songs WHERE id = $1 RETURNING id',
       values: [id],
     };
-
     const result = await this._pool.query(query);
 
     if (!result.rows.length) {

@@ -51,7 +51,6 @@ class SongsHandler {
         response.code(error.statusCode);
         return response;
       }
-
       const response = h.response({
         status: 'error',
         message: 'Maaf, terjadi kegagalan pada server OpenMusic.',
@@ -62,11 +61,12 @@ class SongsHandler {
     }
   }
 
-  // eslint-disable-next-line no-unused-vars
   async getSongsHandler(request, h) {
     try {
       const { title, performer } = request.query;
+
       const songs = await this._service.getSongs(title, performer);
+
       return {
         status: 'success',
         data: {
@@ -82,7 +82,6 @@ class SongsHandler {
         response.code(error.statusCode);
         return response;
       }
-
       const response = h.response({
         status: 'error',
         message: 'Maaf, terjadi kegagalan pada server OpenMusic.',
@@ -96,7 +95,9 @@ class SongsHandler {
   async getSongByIdHandler(request, h) {
     try {
       const { id } = request.params;
+
       const song = await this._service.getSongById(id);
+
       return {
         status: 'success',
         data: {
@@ -112,7 +113,6 @@ class SongsHandler {
         response.code(error.statusCode);
         return response;
       }
-
       const response = h.response({
         status: 'error',
         message: 'Maaf, terjadi kegagalan pada server OpenMusic.',
@@ -143,7 +143,6 @@ class SongsHandler {
         response.code(error.statusCode);
         return response;
       }
-
       const response = h.response({
         status: 'error',
         message: 'Maaf, terjadi kegagalan pada server OpenMusic.',
@@ -157,7 +156,9 @@ class SongsHandler {
   async deleteSongByIdHandler(request, h) {
     try {
       const { id } = request.params;
+
       await this._service.deleteSongById(id);
+
       return {
         status: 'success',
         message: 'Data lagu berhasil dihapus.',
@@ -171,7 +172,6 @@ class SongsHandler {
         response.code(error.statusCode);
         return response;
       }
-
       const response = h.response({
         status: 'error',
         message: 'Maaf, terjadi kegagalan pada server OpenMusic.',

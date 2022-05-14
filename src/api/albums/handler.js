@@ -36,7 +36,6 @@ class AlbumsHandler {
         response.code(error.statusCode);
         return response;
       }
-
       const response = h.response({
         status: 'error',
         message: 'Maaf, terjadi kegagalan pada server OpenMusic.',
@@ -50,8 +49,10 @@ class AlbumsHandler {
   async getAlbumByIdHandler(request, h) {
     try {
       const { id } = request.params;
+
       const album = await this._service.getAlbumById(id);
       const songs = await this._service.getSongsByAlbumId(id);
+
       return {
         status: 'success',
         data: {
@@ -70,7 +71,6 @@ class AlbumsHandler {
         response.code(error.statusCode);
         return response;
       }
-
       const response = h.response({
         status: 'error',
         message: 'Maaf, terjadi kegagalan pada server OpenMusic.',
@@ -101,7 +101,6 @@ class AlbumsHandler {
         response.code(error.statusCode);
         return response;
       }
-
       const response = h.response({
         status: 'error',
         message: 'Maaf, terjadi kegagalan pada server OpenMusic.',
@@ -115,7 +114,9 @@ class AlbumsHandler {
   async deleteAlbumByIdHandler(request, h) {
     try {
       const { id } = request.params;
+
       await this._service.deleteAlbumById(id);
+
       return {
         status: 'success',
         message: 'Album berhasil dihapus.',
@@ -129,7 +130,6 @@ class AlbumsHandler {
         response.code(error.statusCode);
         return response;
       }
-
       const response = h.response({
         status: 'error',
         message: 'Maaf, terjadi kegagalan pada server OpenMusic.',
